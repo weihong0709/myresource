@@ -84,5 +84,64 @@ then
     else
        echo "Sorry, the file $file does not exist"
 fi
+#检查空文件 -s
+# Testing if a file is empty #
+file_name=$HOME/sentinel
+if [ -f $file_name ]
+then
+       if [ -s $file_name ]
+       then
+          echo "The $file_name file exists and has data in it."
+          echo "Will not remove this file."
+       else
+          echo "The $file_name file exists, but is empty."
+          echo "Deleting empty file..."
+          rm $file_name
+       fi 
+else
+       echo "File, $file_name, does not exist."
+fi
+#检查文件是否可写 -w
+item_name=$HOME/sentinel
+#
+if [ -w $item_name ]
+then #Item is writable
+     echo "Writing current time to $item_name"
+     date +%H%M >> $item_name
+#
+else #Item is not writable
+     echo "Unable to write to $item_name"
+fi 
+#检查文件是否可执行 -x
+if [ -x test16.sh ]
+then
+       echo "You can run the script: "
+       ./test16.sh
+else
+       echo "Sorry, you are unable to execute the script"
+fi
+#检查所属关系  -o 运行该脚本的用户是否是/etc/passwd文件的属主
+if [ -O /etc/passwd ] ; then
+ echo "You are the owner of the /etc/passwd file"
+else 
+	echo "Sorry, you are not the owner of the /etc/passwd file"
+fi
+#检查默认属组关系 -G  -G比较会检查文件的默认组，如果它匹配了用户的默认组，则测试成功
+if [ -G $HOME/testing ] ;then
+       echo "You are in the same group as the file"
+  else
+       echo "The file is not owned by your group"
+fi
+#检查文件日期 -nt -ot
+if [ test19.sh -nt test18.sh ]
+    then
+       echo "The test19 file is newer than test18"
+    else
+       echo "The test18 file is newer than test19"
+fi
+if [ test17.sh -ot test19.sh ]
+    then
+      echo "The test17 file is older than the test19 file"
+fi
 
 

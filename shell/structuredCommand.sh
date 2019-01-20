@@ -54,6 +54,8 @@ else
 fi
 
 #test命令 测试变量是否有内容 test后带表达式
+#格式 test condition
+#如果不写test命令的condition部分，它会以非零的退出状态码退出
 my_variable="full"
 if test $my_variable
 then
@@ -69,6 +71,7 @@ fi
 #commands
 #fi
 #test可以判断三类条件 （1）数值比较 只能处理整数（2）字符串比较 （3）文件比较
+#数值比较
 #n1 -eq n2 检查n1是否与n2相等
 #n1 -ge n2 检查n1是否大于或等于n2
 #n1 -gt n2 检查n1是否大于n2
@@ -142,8 +145,49 @@ if [ -z $val3 ]
 else
        echo "The string '$val3' is not empty"
 fi
-
-
-
+#复合条件测试 
+#[ condition1 ] && [ condition2 ]
+#[ condition1 ] || [ condition2 ]
+if [ -d $HOME ] && [ -w $HOME/testing ] ; then
+   echo "The file exists and you can write to it"
+else
+   echo "I cannot write to the file"
+fi
+#if-then的高级特性
+#使用双括号可以使用高级数学表达式 位运算 逻辑求反 位求反等
+#注意，不需要将双括号中表达式里的大于号转义。这是双括号命令提供的另一个高级特性。
+val1=10
+#
+if (( $val1 ** 2 > 90 )); then
+       (( val2 = $val1 ** 2 ))
+       echo "The square of $val1 is $val2"
+fi
+#使用双方括号
+#格式[[ expression ]]
+#作用：提供了test命令未提供的一个特性，模式匹配，在模式匹配里面可以定义正则表达式
+#下面的例子使用了双等号(==)。双等号将右边的字符串(r*)视为一个模式， 并应用模式匹配规则
+if [[ $USER == l* ]]
+then
+echo "Hello $USER"
+else 5
+       echo "Sorry, I do not know you"
+fi
+#case命令
+#格式如下
+#case variable in
+#pattern1 | pattern2) commands1;; pattern3) commands2;;
+#*) default commands;;
+#esac
+case $USER in
+liuweihong | barbara)
+       echo "Welcome, $USER"
+       echo "Please enjoy your visit";;
+    testing)
+      echo "Special testing account";;
+    jessica)
+       echo "Do not forget to log off when you're done";;
+    *)
+       echo "Sorry, you are not allowed here";;
+    esac
 
 
