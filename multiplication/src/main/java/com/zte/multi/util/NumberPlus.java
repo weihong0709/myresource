@@ -62,13 +62,12 @@ public class NumberPlus {
         }
     }
 
-    private int getAddResult(char[] maxLengthNumberArray, char[] minLengthNumberArray, int index) {
+    private int getAddResult(char[] maxLengthNumberArray, char[] minLengthNumberArray, int currentIndex) {
         int addResult = 0;
-        if (minLengthNumberArray.length >= index) {
-
-            addResult = this.addTwoChar(maxLengthNumberArray[maxLengthNumberArray.length - index],minLengthNumberArray[ minLengthNumberArray.length - index]);
+        if (minLengthNumberArray.length >= currentIndex) {
+            addResult = this.addTwoChar(maxLengthNumberArray[maxLengthNumberArray.length - currentIndex],minLengthNumberArray[ minLengthNumberArray.length - currentIndex]);
         }else {
-            addResult = Integer.parseInt(String.valueOf(maxLengthNumberArray[maxLengthNumberArray.length - index]));
+            addResult = Integer.parseInt(String.valueOf(maxLengthNumberArray[maxLengthNumberArray.length - currentIndex]));
         }
         if (isCarry) {
             addResult = addResult + 1;

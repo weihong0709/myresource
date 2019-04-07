@@ -35,7 +35,7 @@ public class NumberStringUtils {
         result.add(numberString);
 
         ArrayList<NumberString> resultLeft = splitNumber(numberLeft);
-        result.addAll(resultLeft);
+        result.addAll(resultLeft);¡
         return result;
     }
 }
