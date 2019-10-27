@@ -14,4 +14,9 @@ done
 echo "The last state we visited was $test" 
 test=Connecticut
 echo "Wait, now we're visiting $test"
+for filename in `ls *.sh`
+do
+  mv $filename  ${filename}_old.txt
+done
+
 
