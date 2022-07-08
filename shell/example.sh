@@ -15,6 +15,8 @@ echo $HOME
 echo $USER
 echo "this is \$15"
 echo current user is ${USER}
+#单引号里面的环境变量引用不会进行替换，例如如下,会直接输出"this is $15"
+echo 'this is $15'
 #用户变量，用等号进行赋值，等号后面不能有空格 shell脚本会自动决定变量值的数据类型。在脚本的整个生命周期里，shell脚本中定义的变量 会一直#保持着它们的值，但在shell脚本结束时会被删除掉
 test=123;
 echo $test;
